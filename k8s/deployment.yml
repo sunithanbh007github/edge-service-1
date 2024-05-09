@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: edge-service-1
+  labels:
+    app: edge-service-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: edge-service-1
+  template:
+    metadata:
+      labels:
+        app: edge-service-1
+    spec:
+      containers:
+        - name: edge-service-1
+          image: edge-service-1
+          imagePullPolicy: IfNotPresent
+          lifecycle:
+            preStop:
+              exec:
+                command: [ "sh", "-c", "sleep 5" ]
+          ports:
+            - containerPort: 9000
+          env:
+            - name: CATALOG_SERVICE_URL
+              value: http://catalog-service-1
+            - name: ORDER_SERVICE_URL
+              value: http://order-service-1
+            - name: SPRING_DATA_REDIS_HOST
+              value: polar-redis-1
