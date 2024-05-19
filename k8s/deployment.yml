@@ -31,3 +31,10 @@ spec:
               value: http://order-service-1
             - name: SPRING_DATA_REDIS_HOST
               value: polar-redis-1
+            - name: SPA_URL
+              value: http://polar-ui
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_ISSUER_URI
+              value: http://polar-keycloak-1/realms/PolarBookshop-1
+
+
+
